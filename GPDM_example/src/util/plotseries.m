@@ -1,11 +1,12 @@
 function plotseries(X, segments, colour, missing)
 %
 
-hold on
+% hold on
+figure()
 
 q = size(X,2);
 symb = 'o';
-if ~exist('missing')
+if ~exist('missing','var')
     missing = []; 
 end
 
@@ -21,7 +22,7 @@ if (q == 2)
     dS(mask,:) = zeros(length(mask),q);
     
     dS = [dS; [0 0]];
-    quiver(S(:,1), S(:,2), dS(:,1), dS(:,2), 0, colour);
+    quiver(S(:,1), S(:,2), dS(:,1), dS(:,2), 0, colour); hold on
     plot(S(:,1), S(:,2), [colour symb]);
 elseif (q >= 3)
     S = X;
@@ -34,7 +35,7 @@ elseif (q >= 3)
        
         
         quiver3(S(nmissing,1), S(nmissing,2), S(nmissing,3), ...
-            dS(nmissing,1), dS(nmissing,2), dS(nmissing,3), 0, colour);
+            dS(nmissing,1), dS(nmissing,2), dS(nmissing,3), 0, colour); hold on;
         if (size(missing,2) > 0) 
             quiver3(S(missing,1), S(missing,2), S(missing,3), ...
                 dS(missing,1), dS(missing,2), dS(missing,3), 0, 'g');
@@ -52,14 +53,14 @@ if (q == 1)
     dS(mask,:) = zeros(length(mask),q);
 
     dS = [dS; 0];
-    quiver(S(:,1), 0, dS(:,1), 0, 0, colour);
+    quiver(S(:,1), 0, dS(:,1), 0, 0, colour); hold on
     plot(S(:,1), 0, [colour symb]);
 end
 
 hold off;
 %set(gcf, 'Renderer', 'OpenGL');
-side_max = max(max(X)); 
-side_min = min(min(X));
-axis([side_min side_max side_min side_max side_min side_max side_min side_max]); 
+% side_max = max(max(X)); 
+% side_min = min(min(X));
+% axis([side_min side_max side_min side_max side_min side_max side_min side_max]); 
 grid on;
 axis equal;
