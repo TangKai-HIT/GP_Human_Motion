@@ -89,7 +89,7 @@ w = ones(D,1);
 save example_model X Y w theta thetad modelType N D q meanData  ...
 segments initY varY missing refY;
 
-%% generate samples from learned model
+%% make predictions from learned model
 load example_model
 [K, invK] = computeKernel(X, theta); % K_Y
 [Xin, Xout] = priorIO(X, segments, modelType); % construct input&output X matrix wrt. the specified type
@@ -99,6 +99,7 @@ simSteps = 256;
 simStart = [X(segments(1)+1,:), X(end,:)]; %  inputs 2 points in case using 2nd order model
 [X_pred, XRand_pred] = simulatedynamics(X, segments, thetad, invKd, simSteps, simStart, modelType);
 
+%% generate samples from learned model
 % uncomment if want to generate new samples
 
 %  hmcopt = foptions;      % Default options vector.
@@ -110,15 +111,19 @@ simStart = [X(segments(1)+1,:), X(end,:)]; %  inputs 2 points in case using 2nd 
 % hmcopt(18) = 0.01;  	% leapfrog step size
 %  X_samples = sampledynamics('example_model', X_pred, 'samples', hmcopt);
 
+%% Plot results
 load samples
-clf;
+%clf;
 % hold on;
 
+figure('Name','Samples')
 for n=1:4:size(X_samples,2)
-plotseries(X_samples{n}, [1], 'g'); 
+plotseries(gca, X_samples{n}, [1], 'g'); 
 end
 
-plotseries(X, segments, 'b');
+figure('Name','Learned Latent Variables')
+plotseries(gca, X, segments, 'b');
 
-plotseries(X_pred, [1], 'r'); 
+figure('Name','Mean Prediction')
+plotseries(gca, X_pred, [1], 'r'); 
 
