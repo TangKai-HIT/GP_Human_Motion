@@ -1,6 +1,6 @@
 function [K1, K2] = kernelDiffParams(arg1, arg2, arg3, arg4);
 
-% KERNELDIFFPARAMS Get gradients of kernel wrt its parameters.
+% KERNELDIFFPARAMS Get gradients of RBF kernel wrt its parameters.
 
 if nargin < 3
   X1 = arg1;
@@ -19,6 +19,6 @@ if nargin < 4
 else
     K = arg4;
 end
-K2 = K/theta(2);
-K1 = -0.5*dist2(X1, X2).*K;
+K2 = K/theta(2); % dK_dtheta2
+K1 = -0.5*dist2(X1, X2).*K; % dK_dtheta1
 

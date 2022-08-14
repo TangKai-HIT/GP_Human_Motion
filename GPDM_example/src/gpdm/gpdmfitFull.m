@@ -11,10 +11,10 @@ global MARGINAL_DW
 global W_VARIANCE
 global USE_OLD_MISSING_DATA
 
-if MARGINAL_W == 1
+%% Specify basic parameters
+if MARGINAL_W == 1 %do not optimize W
     weights = zeros(size(weights)); 
 end
-
 
 if (~exist('fixX', 'var'))
     fixX = 0;
@@ -23,7 +23,7 @@ N = size(Y,1);
 D = size(Y,2);
 q = size(X,2);
 
-nmissing = setdiff(1:N, missing);
+nmissing = setdiff(1:N, missing); %去掉缺失帧后的索引
 
 ndp = 0;
 if (modelType(3) == 0)
@@ -40,11 +40,11 @@ elseif (modelType(3) == 5)
     ndp = 4;
 end
 
-opt14 = options(14); 
+opt14 = options(14); %SCG iterations
 lastWeights = weights; 
 lastX = X; 
 %if ~LOGTHETA 
-    lastTheta = [log(theta) log(thetap)]; 
+    lastTheta = [log(theta) log(thetap)]; % use ln(theta), ln(thetap) for parameter optimization
 %else
 %    lastTheta = [theta(1:end-1) log(theta(end)) thetap(1:end-1) log(thetap(end))]; 
 %end
@@ -52,11 +52,13 @@ energyLog = [];
 changeW = 0;
 changeX = 0; 
 changeTheta = 0;
+
+%% start MAP estimation loop
 for iters = 1:extIters
     fprintf(2,'Iteration %d\n',iters);
   
     if (FIX_HP ~= 1) && (MARGINAL_W ~= 1) && (LEARN_SCALE == 1)
-        [K, invK] = computeKernel(X(nmissing,:), theta);
+        [K, invK] = computeKernel(X(nmissing,:), theta); % compute rbf kernel K_Y
         if (USE_OLD_MISSING_DATA == 1) 
         else
         if (~isempty(missing))
@@ -68,8 +70,9 @@ for iters = 1:extIters
         end
         end
 
-        for d=1:D
-            if (W_VARIANCE == 0)
+        for d=1:D % data Y dimensions
+            % update w_d (weight of dimension d)
+            if (W_VARIANCE == 0) % kappa^2=0
                 denom = Y(nmissing,d)'*invK*Y(nmissing,d); 
                 if (denom == 0) 
                     weights(d) = 1; 
@@ -77,16 +80,15 @@ for iters = 1:extIters
                     weights(d) = sqrt(length(nmissing)/denom); 
                 end
             else
-
                 denom = Y(nmissing,d)'*invK*Y(nmissing,d) + 1/W_VARIANCE;
-
                 weights(d) = sqrt(length(nmissing)/denom);
                 %             weights(d) = 1;
             end
 
         end
     end
-        changeW = max(abs(weights - lastWeights)); 
+    
+    changeW = max(abs(weights - lastWeights)); 
     lastWeights = weights; 
 %     theta = thetaConstrain(theta);
 %     thetap = thetaConstrain(thetap);
@@ -120,7 +122,7 @@ for iters = 1:extIters
 %             lnthetap = [thetap(1:end-1) log(thetap(end))];
 %         end
 %         
-        params = [X(:)' lntheta lnthetap];
+        params = [X(:)' lntheta lnthetap]; % expand X, concatenate with HPs(ln(theta), ln(thetap))
         [params options flog] = scg('gpdmlikelihood', params, options, 'gpdmgradient',...
             Y, weights, segments, modelType, missing);
         
@@ -274,11 +276,10 @@ for iters = 1:extIters
         options(14) = opt14; 
     end
     
-    
-
 %     plot(weights);
 %     pause;
 end
+
 nmissing = 1:N; 
 if MARGINAL_W == 1
     [K, invK] = computeKernel(X(nmissing,:), theta);

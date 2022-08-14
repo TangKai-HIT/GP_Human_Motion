@@ -1,16 +1,16 @@
 function [K, invK] = computeKernel(X, theta, Kn, invKn);
 
-% COMPUTEKERNEL Compute the kernel matrix for data X with parameters theta.
+% COMPUTEKERNEL Compute the RBF kernel matrix for data X with parameters theta.
 
 if (nargin < 4)
     theta = thetaConstrain(theta);
-    K = kernel(X, X, theta);
-    K = K + eye(size(X, 1))*1/theta(end);
+    K = kernel(X, X, theta); %rbf kernel
+    K = K + eye(size(X, 1))*1/theta(end); %noise term
     n = size(K,1);
     if nargout > 1
-        invK = pdinv(K);
+        invK = pdinv(K); %inverse of PSD matrix
     end
-else
+else % construct new kernel matrix from old (input new data)
     n = size(Kn,1);
     Ainv = invKn;
 

@@ -1,22 +1,23 @@
 function [X_pred, XRand_pred] = simulatedynamics(X, segments, thetad, invKd, ...,
     simSteps, simStart, modelType, updateKernel)
+
 if (~exist('updateKernel', 'var'))
     updateKernel = 0;
 end
-[Xin Xout] = priorIO(X, segments, modelType);
+[Xin, Xout] = priorIO(X, segments, modelType);
 
 q = size(X,2);
 
 X_pred = zeros(simSteps, q);
 XRand_pred = zeros(simSteps, q);
 
-if (modelType(1) < 2)
+if (modelType(1) < 2) % 2 inputs
     order = 2;
-    X_pred(2,:) = simStart(:,1:q);
+    X_pred(2,:) = simStart(:,1:q); 
     X_pred(1,:) = simStart(:,end-q+1:end);
     XRand_pred(2,:) = simStart(:,1:q);
     XRand_pred(1,:) = simStart(:,end-q+1:end);
-else
+else % 1 input
     order = 1;
     X_pred(1,:) = simStart(:,end-q+1:end);
     XRand_pred(1,:) = simStart(:,end-q+1:end);

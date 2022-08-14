@@ -1,4 +1,4 @@
-function KPart = kernelDiffX(X, theta, q, K);
+function KPart = kernelDiffX(X, theta, q, K)
 
 % KERNELDIFFX Compute the gradient of the kernel with respect to X.
 
@@ -8,7 +8,7 @@ function KPart = kernelDiffX(X, theta, q, K);
 
 theta = thetaConstrain(theta);
 
-latentDim = size(X, 2);
+%latentDim = size(X, 2);
 numData = size(X, 1);
 
 K1 = repmat(X(:, q), 1, numData);

@@ -1,3 +1,4 @@
+# Some Notations
 This is a version of the GPDM code that you are free to use for academic purposes.  It is obviously not 'production code', and I do not guarantee its correctness or efficiency.  
 
 See example.m for the code to learn a single walker model and generate samples from the learned model.  I only included a single .amc file from the CMU mocap data base, if you are interested in more mocap data, go to mocap.cs.cmu.edu.  
@@ -7,3 +8,6 @@ The code in src/gplvm is curtesy of Neil Lawrence, and src/netlab is simply a co
 
 Cheers,
 Jack Wang
+
+Add MOCAP(modified version), NDLUTIL toolbox(By Neil Lawrence) to src, enabling visualization(animation) of asf/amc files. 
+Kai Tang

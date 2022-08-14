@@ -2,12 +2,12 @@ function [xo, varxo] = priorManifoldOutputs(xi, Xin, Xout, thetad, invKd, modelT
 
 q = size(Xout,2);
 
-if (modelType(1) == 0)
+if (modelType(1) == 0) %   0 => [x_t, x_{t-1}]
     input = xi;
-elseif (modelType(1) == 1)
+elseif (modelType(1) == 1) %   1 => [x_t, x_t - x_{t-1}] == [x_t, v_{t-1}]
     input = [xi(:,1:q) xi(:,1:q)-xi(:,q+1:end)];
-elseif (modelType(1) == 2)
-    input = [xi(:,1:q)];
+elseif (modelType(1) == 2) %   2 => [x_t]
+    input = xi(:,1:q);
 end
 
 if (modelType(3) == 0)
@@ -25,7 +25,7 @@ elseif (modelType(3) == 3)
     
     alpha = zeros(N, q);
     
-    kbold = lin_kernel2(input, Xin, thetad(1:2))' + kernel2(input, Xin, thetad(3:5))';;
+    kbold = lin_kernel2(input, Xin, thetad(1:2))' + kernel2(input, Xin, thetad(3:5))'; % size(Xin,1) X size(input,1)
     
     A = Xout'*invKd;
     output = A*kbold;
@@ -44,7 +44,7 @@ elseif (modelType(3) == 5)
     
     alpha = zeros(N, q);
     
-    kbold = lin_kernel(input, Xin, thetad(1))' + kernel(input, Xin, thetad(2:3))';;
+    kbold = lin_kernel(input, Xin, thetad(1))' + kernel(input, Xin, thetad(2:3))'; %
     
     A = Xout'*invKd;
     output = A*kbold;
@@ -52,14 +52,14 @@ elseif (modelType(3) == 5)
     output_var = zeros(M, 1);
     for i = 1:M
         output_var(i) = lin_kernel(input(i,:), input(i,:), thetad(1)) + ...
-            thetad(3) +1/thetad(end) - kbold(:, i)'*invKd*kbold(:, i); 
+            thetad(3) +1/thetad(end) - kbold(:, i)'*invKd*kbold(:, i); % K_X(x*, x*) - K_X(x*)' * inv(K_X) * K_X(x*)
     end
 end
 
-if (modelType(2) == 0)
+if (modelType(2) == 0) %   0 => x_{t+1} 
     xo = output;
     varxo = output_var;
-elseif (modelType(2) == 1)
+elseif (modelType(2) == 1) %   1 => x_{t+1} - x_t == (v_t)
     xo = output + xi(1:q);
     varxo = output_var;
 end
