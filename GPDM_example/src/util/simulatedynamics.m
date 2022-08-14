@@ -8,8 +8,8 @@ end
 
 q = size(X,2);
 
-X_pred = zeros(simSteps, q);
-XRand_pred = zeros(simSteps, q);
+X_pred = zeros(simSteps, q); % mean prediction
+XRand_pred = zeros(simSteps, q); % prediction with guassian noise
 
 if (modelType(1) < 2) % 2 inputs
     order = 2;
@@ -56,5 +56,5 @@ for n = (order+1):simSteps
 %     else
 %         XRand_pred(n,:) = XRand_pred(n-1,:) + sqrt(var_pred)*randn(1,q);
 %     end
-    XRand_pred(n,:) = XRand_pred(n-1,:) + sqrt(var_pred)*randn(1,q);
+    XRand_pred(n,:) = XRand_pred(n-1,:) + sqrt(var_pred)*randn(1,q); % prediction with guassian noise
 end
