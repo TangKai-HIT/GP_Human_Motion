@@ -1,0 +1,30 @@
+#Training Results Info
+SNR(beta)(MAP):
+  48.426358496438155
+
+CLS(beta)(MAP):
+   0.560309348973795
+
+SNR(alpha)(MAP):
+   4.877310878150998
+
+CLS(alpha)(MAP):
+   0.372402308131847
+
+SNR(beta)(B-GPDM):
+   2.708210618038097
+
+CLS(beta)(B-GPDM):
+   0.708029506201008
+
+SNR(alpha)(B-GPDM):
+     1.008107692851672e+03
+
+CLS(alpha)(B-GPDM):
+   1.102603055390139
+
+#test set Prediction error
+RMSE(MAP):
+  64.395944320370035
+
+BGPDM overshoot!

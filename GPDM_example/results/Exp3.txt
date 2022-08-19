@@ -1,0 +1,27 @@
+SNR(beta)(hmc-EM):
+     1.646641019391005e+03
+
+CLS(beta)(hmc-EM):
+   4.215204495722221
+
+SNR(alpha)(hmc-EM):
+  39.013865912599428
+
+CLS(alpha)(hmc-EM):
+   0.359703460809658
+
+#reconstruction error
+RMSE(hmcEM):
+   2.899816677633266
+
+#GPR Training RMSE
+GPR 10-fold loss MSE(hmc-EM):
+     7.757764758961134e-04
+
+#GPR Mapping RMSE
+RMSE(GPR Mapping-hmcEM):
+   0.807569974459397
+
+#GPDM Prediction RMSE
+RMSE(GPDM Predict-hmcEM):
+  51.342581912285290
