@@ -1,6 +1,6 @@
 function X_samples  = sampledynamics(inputModel, oldX_samples, output, hmcoptions)
 
-load(inputModel);
+load(inputModel); 
 [Xin Xout] = priorIO(X, segments, modelType);
 [Kd invKd] = computePriorKernel(Xin, thetad, modelType(3));
 q = size(X,2);

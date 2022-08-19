@@ -101,7 +101,7 @@ for iters = 1:extIters
 %             lnthetap = [thetap(1:end-1) log(thetap(end))];
 %         end
         params = [lntheta lnthetap];
-        [params options flog] = scg('gpdmlikelihood', params, options, 'gpdmgradient',...
+        [params, options, flog] = scg('gpdmlikelihood', params, options, 'gpdmgradient',...
             Y, weights, segments, modelType, missing, X);
         
         lntheta = params(1:3);

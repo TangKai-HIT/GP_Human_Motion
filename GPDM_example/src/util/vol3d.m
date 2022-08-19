@@ -133,7 +133,7 @@ cam_dir = camtarget(ax) - campos(ax);
 
 h = findobj(ax,'type','surface','tag','vol3d');
 for n = 1:length(h)
-  try,
+  try
      delete(h(n));
   end
 end

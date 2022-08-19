@@ -124,7 +124,7 @@ for iters = 1:extIters
                 Y, weights, segments, modelType, [theta thetap]);
 
             diagn.acc(find(diagn.acc > 1)) = 1;
-            ratio = sum(diagn.acc)/size(diagn.acc, 1)
+            ratio = sum(diagn.acc)/size(diagn.acc, 1);
             hmcoptions(18)
         end
         if (ratio < 0.6)
@@ -146,8 +146,8 @@ for iters = 1:extIters
     end
     hmcoptions(14) = num_samples; 
     
-    save(strcat(output, num2str(iters)), 'X', 'Y', 'weights', 'segments', 'theta', 'thetap', ...
-        'Xsamples', 'options', 'hmcoptions', 'modelType', 'energyLog', 'changeWLog', 'changeThetaLog');
+%     save(strcat(output, num2str(iters)), 'X', 'Y', 'weights', 'segments', 'theta', 'thetap', ...
+%         'Xsamples', 'options', 'hmcoptions', 'modelType', 'energyLog', 'changeWLog', 'changeThetaLog');
     end
     if (done == 1)
         break;
@@ -295,6 +295,7 @@ for iters = 1:extIters
     %         end
     %     end
 end
+
 N = size(fY,1);
 if MARGINAL_W == 1
     R = size(Xsamples,1);

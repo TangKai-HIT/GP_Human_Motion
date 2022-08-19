@@ -1,5 +1,5 @@
 function [xo, varxo] = priorManifoldOutputs(xi, Xin, Xout, thetad, invKd, modelType)
-
+%%Calculate GP mapping from x_{t-1} to x_t, xi=x_{t-1}
 q = size(Xout,2);
 
 if (modelType(1) == 0) %   0 => [x_t, x_{t-1}]

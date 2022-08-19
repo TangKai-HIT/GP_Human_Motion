@@ -380,7 +380,7 @@ end
 %gParam = [0 0 0]; 
 
 if (~exist('fixedTheta', 'var') && ~exist('fixedX', 'var') )
-    gX= dL_dx(:)';
+    gX= dL_dx(:)'; %rearrange the dL_dx matrix to a row
     g = -[gX(:)' gParam gParamp];
 elseif (exist('fixedX', 'var') && ~exist('fixedTheta','var'))
     g = -[gParam gParamp];

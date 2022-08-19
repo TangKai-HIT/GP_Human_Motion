@@ -54,13 +54,13 @@ if (plotType == 0)
         Z = Z + log(det(W));
     end
 elseif (plotType == 1)
-    [Xin Xout] = priorIO(X, segments, modelType);
+    [Xin, Xout] = priorIO(X, segments, modelType);
     [testY, testYVar] = priorManifoldOutputs([XTest zeros(size(XTest,1),q)] , Xin, Xout, thetad, invKd, modelType);
     Z = -q/2*log(reshape(testYVar,size(Z,1), size(Z,2), size(Z,3))) - ... 
         reshape(0.5*sum(XTest.*XTest, 2), size(Z,1), size(Z,2), size(Z,3));
     Z = Z - q/2*(2*pi) - 1/2*(2*pi); 
 elseif (plotType == 2)
-    [Xin Xout] = priorIO(X, segments, modelType);
+    [Xin, Xout] = priorIO(X, segments, modelType);
     %[testY1, testYVar1] = manifoldOutputs(XTest, X, Y, theta, invK);
     [testY2 ,testYVar2] = ...
         priorManifoldOutputs([XTest zeros(size(XTest,1),q)] , Xin, Xout, thetad, invKd, modelType);
@@ -94,7 +94,7 @@ Zi = interp3(X1, X2, X3, Z, X1i, X2i, X3i);
 %  h = vol3d('cdata',Z,'texture','3D', 'Parent', [min(X(:, 1))*1.1 max(X(:, 1))*1.1 ...
 %  min(X(:, 2))*1.1 max(X(:, 2))*1.1 ...
 %    min(X(:, 3))*1.1 max(X(:, 3))*1.1]);
-h = vol3d('cdata',Zi,'texture','3D');
+h = vol3d('cdata',Zi,'texture','3D'); 
 mask = segments-1;
 mask(find(mask == 0)) = [];
 %SX = X;

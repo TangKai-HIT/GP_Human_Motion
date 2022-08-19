@@ -9,7 +9,7 @@ end
 if (expMap == 0)
     dims =[6 3 3 3 3 3 3 2 3 1 1 2 1 2 2 3 1 1 2 1 2 3 1 2 1 3 1 2 1]; %DOF of each joints/features
     locations = [1 7 10 13 16 19 22 25 27 30 31 32 34 35 37 39 42 43 44 46 47 49 52 53 55 56 59 60 62];
-    mask = [32:33 34 35:36 44:45 46 47:48 55 62]; %remove some joints/features (corresbonding dimensions)
+    mask = [32:33 34 35:36 44:45 46 47:48 55 62]; %removed: rhand,rfingers,rthumb, lhand,lfingers,lthumb, rtoes, ltoes
     %mask = [];
 else
     dims =[6 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3];

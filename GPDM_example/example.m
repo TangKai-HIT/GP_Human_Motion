@@ -1,4 +1,4 @@
-addpath src/gpdm src/gplvm src/netlab src/util src/MOCAP src/NDLUTIL
+addpath src/gpdm src/gplvm src/netlab src/util src/MOCAP src/NDLUTIL data_sets/
 format long
 
 global USE_GAMMA_PRIOR  % gamma prior for dynamics, only works with RBF kernel
