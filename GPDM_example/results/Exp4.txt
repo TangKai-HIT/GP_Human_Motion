@@ -1,3 +1,6 @@
+%%Experiment4: Hold out test of multi-squence 1-order GPDM for different learning methods: MAP+BFGS, B-GPDM+BFGS
+% Notes: results include learning rates, some related figures, SNR & CLS, test set prediction error
+
 #Training Results Info
 SNR(beta)(MAP):
   48.426358496438155

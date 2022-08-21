@@ -17,4 +17,10 @@ Add some modified functions to /modified.
 Add some useful functions to /myutil:  
 `remakeAmcAnimation.m`: make amc & gif files for newly generated motions for predicted motion data matrix.(give the mean of the data if it's been centered)   
 
+### Experiments  
+1.`Experiment1`: compare PCA, KPCA, GPLVM, GDPM results: using MAP + SCG to train GPLVM & GPDM. KPCA is not able yet  
+2.`Experiment2`: compare different learning methods: MAP + SCG/BFGS,  B-GPDM + SCG/BFGS (strange difference was seen when use BFGS to train MAP, results of which turned out to be different from that of SCG)   
+3.`Experiment3`: try 2-stage-MAP(hmc-EM) method to train GPDM model    
+4.`Experiment4`: Hold out test of multi-squence 1-order GPDM for different learning methods: MAP+BFGS, B-GPDM+BFGS  
+
 Kai Tang

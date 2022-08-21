@@ -1,4 +1,8 @@
-%%Experiment2: compare different learning methods: SCG, L-BFGS=MAP,  SCG,L-BFGS=B-GPDM
+%%Experiment2: compare different learning methods: MAP + SCG/L-BFGS,  B-GPDM + SCG/L-BFGS
+% Notes: results include learning rates(SCG & L-BFGS), training set reconstruction error,
+% test set prediction error, GPR models(Y->X) for each condition, GPR model cross validation, 
+% GPR models test set predction error, some figures, SNR & CLS. 
+
 clc; clear; close all
 addpath(genpath('src/')) %include all subfolders
 addpath modified/ my_util/ data_sets/

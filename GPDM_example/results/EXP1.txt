@@ -1,3 +1,6 @@
+#Experiment1: compare PCA, KPCA, GPLVM, GDPM results
+#Note: using MAP + SCG to train GPLVM & GPDM. KPCA is not able yet.Results include training set reconstruction error, some figures related to the LVs trained by GPLVM & GPDM, SNR & CLS 
+
 #Reconstruction error
 RMSE(PCA):
   19.046802658655309

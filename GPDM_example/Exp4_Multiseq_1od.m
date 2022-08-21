@@ -1,4 +1,6 @@
-%%Experiment4: hold out test of 1-order GPDM for different learning methods: MAP, B-GPDM
+%%Experiment4: Hold out test of multi-squence 1-order GPDM for different learning methods: MAP+BFGS, B-GPDM+BFGS
+% Notes: results include learning rates, some related figures, SNR & CLS, test set prediction error
+
 clc; clear; close all
 addpath(genpath('src/')) %include all subfolders
 addpath modified/ my_util/ data_sets/

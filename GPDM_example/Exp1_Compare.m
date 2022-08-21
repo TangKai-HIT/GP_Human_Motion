@@ -1,4 +1,8 @@
 %%Experiment1: compare PCA, KPCA, GPLVM, GDPM results
+% Note: using MAP + SCG to train GPLVM & GPDM. KPCA is not able yet
+% results include training set reconstruction error, some figures related 
+% to the LVs trained by GPLVM & GPDM, SNR & CLS 
+
 clc; clear; close all
 addpath(genpath('src/')) %include all subfolders
 addpath modified/ my_util/ data_sets/

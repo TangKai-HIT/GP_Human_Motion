@@ -1,3 +1,8 @@
+%%Experiment3: try 2-stage-MAP(hmc-EM) method to train GPDM model
+% Notes: results include training set reconstruction error, some figures related 
+% to the LVs trained by 2-stage-MAP(hmc-EM), SNR & CLS, test set prediction error, 
+% GPR models(Y->X) for each condition, GPR model cross validation, GPR models test set predction error
+
 clc; clear; close all
 addpath(genpath('src/')) %include all subfolders
 addpath modified/ my_util/ data_sets/
